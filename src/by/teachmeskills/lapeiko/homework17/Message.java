@@ -9,7 +9,7 @@ public class Message {
     private final String message;
     private final Instant createdInstantTime;
 
-    public Message(User user, String message, Instant now) {
+    public Message(User user, String message) {
         this.user = user;
         this.message = message;
         this.createdInstantTime = Instant.now();

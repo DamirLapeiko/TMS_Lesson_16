@@ -35,7 +35,7 @@ public class ChatService {
                     break;
             }
         }
-        saveNewMessage(new Message(user, message, timeOfMessage));
+        saveNewMessage(new Message(user, message));
         return true;
     }
     private void saveNewMessage(Message newMessage) {
