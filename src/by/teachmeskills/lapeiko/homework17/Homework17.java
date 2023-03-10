@@ -1,11 +1,10 @@
-package by.teachmeskills.lapeiko.homework16;
+package by.teachmeskills.lapeiko.homework17;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Homework16 {
+public class Homework17 {
     private static ChatService chat;
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package by.teachmeskills.lapeiko.homework16;
+package by.teachmeskills.lapeiko.homework17;
 
 public class User {
     private final String nickName;
@@ -11,14 +11,7 @@ public class User {
         return nickName;
     }
 
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        User user = (User) obj;
-        return this.nickName.equals(user.nickName);
-    }
-
+    @Override
     public String toString(){
         return "%s".formatted(nickName);
     }

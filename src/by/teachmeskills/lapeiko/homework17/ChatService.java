@@ -1,4 +1,4 @@
-package by.teachmeskills.lapeiko.homework16;
+package by.teachmeskills.lapeiko.homework17;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -24,15 +24,15 @@ public class ChatService {
         Instant delayTime = timeOfMessage.minus(postDelay);
         int counterMessages = 0;
         for (int i = historyOfMessages.length - 1; i >= 0; i--) {
-            if (historyOfMessages[i].getTime().isAfter(delayTime) &&
+            if (historyOfMessages[i].getCreatedInstantTime().isAfter(delayTime) &&
                     historyOfMessages[i].getUser().getNickname().equals(user.getNickname())) {
                 counterMessages++;
-                if (counterMessages == limitOfPosts){
+                if (counterMessages == limitOfPosts) {
                     return false;
                 }
-                if (historyOfMessages[i].getTime().isBefore(delayTime)){
+            }
+                if (historyOfMessages[i].getCreatedInstantTime().isBefore(delayTime)) {
                     break;
-                }
             }
         }
         saveNewMessage(new Message(user, message, timeOfMessage));

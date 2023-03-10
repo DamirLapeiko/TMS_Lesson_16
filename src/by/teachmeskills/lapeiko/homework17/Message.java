@@ -1,4 +1,4 @@
-package by.teachmeskills.lapeiko.homework16;
+package by.teachmeskills.lapeiko.homework17;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -7,20 +7,20 @@ import java.time.format.DateTimeFormatter;
 public class Message {
     private final User user;
     private final String message;
-    private final Instant time;
+    private final Instant createdInstantTime;
 
-    public Message(User user, String message, Instant time) {
+    public Message(User user, String message, Instant now) {
         this.user = user;
         this.message = message;
-        this.time = Instant.now();
+        this.createdInstantTime = Instant.now();
     }
 
     public User getUser() {
         return user;
     }
 
-    public Instant getTime() {
-        return time;
+    public Instant getCreatedInstantTime() {
+        return createdInstantTime;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Message {
         return "Message:" +
                 "user = " + user +
                 "message = " + message +
-                "time = " + DateTimeFormatter.ofPattern("hh:mm")
-                .withZone(ZoneId.of("Europe/Minsk")).format(time);
+                "createdInstantTime = " + DateTimeFormatter.ofPattern("hh:mm")
+                .withZone(ZoneId.of("Europe/Minsk")).format(createdInstantTime);
     }
 }
