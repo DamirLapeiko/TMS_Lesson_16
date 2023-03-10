@@ -10,6 +10,12 @@ public class ChatService {
     private Message[] historyOfMessages;
 
     public ChatService(int limitOfPosts, Duration postDelay) {
+        if (limitOfPosts <= 0){
+            throw new IllegalArgumentException("limitOfPosts must be positive");
+        }
+        if (postDelay.compareTo(Duration.ZERO) <= 0){
+            throw new IllegalArgumentException("postDelay must be positive");
+        }
         this.limitOfPosts = limitOfPosts;
         this.postDelay = postDelay;
         historyOfMessages = new Message[0];
