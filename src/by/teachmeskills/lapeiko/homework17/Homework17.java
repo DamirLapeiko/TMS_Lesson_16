@@ -1,6 +1,7 @@
 package by.teachmeskills.lapeiko.homework17;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -32,10 +33,13 @@ public class Homework17 {
                         User user = new User(scanner.nextLine());
                         System.out.print("Enter message: ");
                         String message = scanner.nextLine();
-                        if (chat.addNewMessage(user, message)) {
+                        try {
+                            chat.addNewMessage(user, message);
                             System.out.println("Message added to history");
-                        } else {
-                            System.out.println("You used all tries to write a message. Wait 3 min");
+                        } catch (UserMessagesRateLimitingExceededException e) {
+                            System.out.printf(
+                                    "You used all tries to write a message. Wait %s minutes",
+                                    Duration.between(Instant.now(), e.getLimitedTime()).toSeconds());
                         }
                         if (counter++ == 10) {
                             break;
