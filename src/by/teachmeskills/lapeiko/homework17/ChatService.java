@@ -25,7 +25,7 @@ public class ChatService {
         return Arrays.copyOf(historyOfMessages, historyOfMessages.length);
     }
 
-    public boolean addNewMessage(User user, String message) {
+    public void addNewMessage(User user, String message) throws UserMessagesRateLimitingExceededException {
         Instant timeOfMessage = Instant.now();
         Instant delayTime = timeOfMessage.minus(postDelay);
         int counterMessages = 0;
@@ -34,15 +34,15 @@ public class ChatService {
                     historyOfMessages[i].getUser().getNickname().equals(user.getNickname())) {
                 counterMessages++;
                 if (counterMessages == limitOfPosts) {
-                    return false;
+                    throw new UserMessagesRateLimitingExceededException(historyOfMessages[i].
+                                    getCreatedInstantTime().plus(postDelay));
                 }
             }
                 if (historyOfMessages[i].getCreatedInstantTime().isBefore(delayTime)) {
-                    break;
+                    return;
             }
         }
         saveNewMessage(new Message(user, message));
-        return true;
     }
     private void saveNewMessage(Message newMessage) {
         historyOfMessages = Arrays.copyOf(historyOfMessages, historyOfMessages.length + 1);
