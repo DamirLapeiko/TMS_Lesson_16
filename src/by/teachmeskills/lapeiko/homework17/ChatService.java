@@ -39,7 +39,7 @@ public class ChatService {
                 }
             }
                 if (historyOfMessages[i].getCreatedInstantTime().isBefore(delayTime)) {
-                    return;
+                    break;
             }
         }
         saveNewMessage(new Message(user, message));
